@@ -95,19 +95,20 @@ const FloatingFeedback = () => {
 
   return (
     <>
+      <div className="mr-19">
       {/* Floating Feedback Button */}
       <Dialog open={showFeedbackDialog} onOpenChange={setShowFeedbackDialog}>
         <DialogTrigger asChild>
-          <Button
+          {/* <Button
             className={cn(
-              "fixed bottom-6 bg-primary hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 z-50",
+              " fixed bottom-6 right:4  bg-primary hover:bg-green-600  text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 z-50",
               isRTL ? "left-6" : "right-6",
             )}
             size="lg"
           >
             <MessageSquare className="h-5 w-5 mr-2" />
             {t("feedback.giveFeedback")}
-          </Button>
+          </Button> */}
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-md" dir={isRTL ? "rtl" : "ltr"}>
@@ -191,7 +192,8 @@ const FloatingFeedback = () => {
             </div>
           </form>
         </DialogContent>
-      </Dialog>
+        </Dialog>
+        </div>
     </>
   );
 };

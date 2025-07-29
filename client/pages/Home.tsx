@@ -602,7 +602,7 @@ const Home = () => {
                 size="lg"
                 className="text-lg px-8 py-4 bg-gradient-to-r from-primary to-green-600 hover:from-green-600 hover:to-primary transition-all duration-300 transform hover:scale-105"
               >
-                <MessageSquare className="h-5 w-5 mr-2" />
+                <MessageSquare className="h-5 w-5 mr-2 " />
                 {t("feedback.giveFeedback")}
               </Button>
             </DialogTrigger>
