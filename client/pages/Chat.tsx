@@ -1020,67 +1020,67 @@
 // };
 
 // export default Chat;
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 
-// Declare the custom element for TypeScript
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'df-messenger': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        location?: string;
-        'project-id'?: string;
-        'agent-id'?: string;
-        'language-code'?: string;
-        'max-query-length'?: string | number;
-      };
-      'df-messenger-chat-bubble': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        'chat-title'?: string;
-      }
-    }
-  }
-}
+// // Declare the custom element for TypeScript
+// declare global {
+//   namespace JSX {
+//     interface IntrinsicElements {
+//       'df-messenger': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+//         location?: string;
+//         'project-id'?: string;
+//         'agent-id'?: string;
+//         'language-code'?: string;
+//         'max-query-length'?: string | number;
+//       };
+//       'df-messenger-chat-bubble': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+//         'chat-title'?: string;
+//       }
+//     }
+//   }
+// }
 
-export default function Chat() {
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css';
-    document.head.appendChild(link);
+// export default function Chat() {
+//   useEffect(() => {
+//     const link = document.createElement('link');
+//     link.rel = 'stylesheet';
+//     link.href = 'https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css';
+//     document.head.appendChild(link);
 
-    const script = document.createElement('script');
-    script.src = 'https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js';
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
+//     const script = document.createElement('script');
+//     script.src = 'https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js';
+//     script.async = true;
+//     document.body.appendChild(script);
+//   }, []);
 
-  return (
-    <>
+//   return (
+//     <>
       
-      <df-messenger
-        location="eu"
-        project-id="tax-assistant-469117"
-        agent-id="07d2fbc5-b94d-44e6-a9b7-a895b89b375c"
-        language-code="en"
-        max-query-length="-1"
-      >
-        <df-messenger-chat-bubble chat-title="tax-chatbot"></df-messenger-chat-bubble>
-      </df-messenger>
+//       <df-messenger
+//         location="eu"
+//         project-id="tax-assistant-469117"
+//         agent-id="07d2fbc5-b94d-44e6-a9b7-a895b89b375c"
+//         language-code="en"
+//         max-query-length="-1"
+//       >
+//         <df-messenger-chat-bubble chat-title="tax-chatbot"></df-messenger-chat-bubble>
+//       </df-messenger>
 
-      <style>
- {`
-          df-messenger {
-         z-index: 999;
-    position: fixed;
-            bottom: 16px;
-            right: 16px;
-            --df-messenger-font-color: #000;
-            --df-messenger-font-family: Google Sans;
-            --df-messenger-chat-background: #f3f6fc;
-            --df-messenger-message-user-background: #d3e3fd;
-            --df-messenger-message-bot-background: #fff;
-          }
-        `}
-      </style>
-    </>
-  );
-}
+//       <style>
+//  {`
+//           df-messenger {
+//          z-index: 999;
+//     position: fixed;
+//             bottom: 16px;
+//             right: 16px;
+//             --df-messenger-font-color: #000;
+//             --df-messenger-font-family: Google Sans;
+//             --df-messenger-chat-background: #f3f6fc;
+//             --df-messenger-message-user-background: #d3e3fd;
+//             --df-messenger-message-bot-background: #fff;
+//           }
+//         `}
+//       </style>
+//     </>
+//   );
+// }

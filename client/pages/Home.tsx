@@ -9,18 +9,12 @@ import {
   Mic,
   Globe,
   Zap,
-  Shield,
-  Clock,
-  ArrowRight,
   CheckCircle,
   Users,
   MessageSquare,
   Send,
-  X,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
-import Chat from "./Chat";
 import { useLanguage, languages } from "@/lib/translations";
 import {
   Dialog,
