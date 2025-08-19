@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import Chat from "./Chat";
 import { useLanguage, languages } from "@/lib/translations";
 import {
   Dialog,
@@ -250,7 +251,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              {/* <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/chat">
                   <Button
                     size="lg"
@@ -261,7 +262,7 @@ const Home = () => {
                     <ArrowRight className="h-5 w-5 ml-2" />
                   </Button>
                 </Link>
-              </div>
+              </div> */}
 
               <div className="flex items-center space-x-6 text-sm text-gray-500">
                 <div className="flex items-center space-x-2">
@@ -760,7 +761,7 @@ const Home = () => {
           </h2>
           <p className="text-xl text-green-100 mb-8">{t("cta.subtitle")}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/chat">
+            {/* <Link to="/chat">
               <Button
                 size="lg"
                 variant="secondary"
@@ -769,7 +770,7 @@ const Home = () => {
                 <MessageCircle className="h-5 w-5 mr-2" />
                 {t("cta.askTaxes")}
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>

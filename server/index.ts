@@ -1,8 +1,15 @@
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { xai } from '@ai-sdk/xai';
+import { generateText } from 'ai';
+const { text } = await generateText({
+  model: xai('grok-2-1212'),
+  prompt: 'Write a vegetarian lasagna recipe for 4 people.',
+});
 
 export function createServer() {
+  
   const app = express();
 
   // Middleware

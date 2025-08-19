@@ -126,7 +126,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     "about.technologyDesc2":
       "We continuously update our knowledge base to reflect the latest changes in tax law, ensuring you always receive current, relevant information.",
     "about.readyIntegration": "Ready for Botpress and Gemini integration",
-
+    "our.Values": "Our Values",
+    "reliable":"Providing reliable information based on current Uganda Revenue Authority guidelines",
     // Chat Page
     "chat.recentChats": "Recent Chats",
     "chat.online": "Online",
@@ -733,6 +734,8 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     "about.mission": "Ekigenderirwa Kyaitu",
     "about.missionText":
       "Okufuura amagezi g'enshonga mu Uganda gafunibwe abantu bona tukaba tuhairemu omuyambi ogw'amagezi ogw'ennimi nyingi oguyamba abantu n'amabizinensi okutegyera obuvunaanyizibwa bwabwe obw'enshonga, okukora okubara okutuufu, era okugoberera ebyetaago bya Uganda Revenue Authority.",
+    "our.Values": "Ebihango byaitu",
+    "reliable":"Okuhayo amahango g'amazima agashingirize ku mateeka agariho hati",
 
     // Chat Page
     "chat.recentChats": "Amakuriikuranisa ag'Ahabwongyereza",

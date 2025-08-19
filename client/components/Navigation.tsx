@@ -21,7 +21,6 @@ const Navigation = () => {
 
   const navItems = [
     { name: t("nav.home"), path: "/" },
-    { name: t("nav.chat"), path: "/chat" },
     { name: t("nav.about"), path: "/about" },
   ];
 

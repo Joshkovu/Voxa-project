@@ -27,8 +27,8 @@
 //     throw new Error("Function not implemented.")
 // }
 
-import { google } from '@ai-sdk/google';
-import { streamText } from 'ai';
+import { xai } from '@ai-sdk/xai';
+import { streamText, UIMessage, convertToModelMessages } from 'ai';
 import "dotenv/config"
 // import { GoogleGenerativeAI } from '@google/generative-ai';
 
@@ -36,13 +36,14 @@ import "dotenv/config"
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages }: { messages: UIMessage[] } = await req.json();
+
 // const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
 // const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
 
   const result = streamText({
-    model: google('gemini-1.5-pro-latest'),
-      messages,
+    model: xai('grok-1.5'),
+       messages: convertToModelMessages(messages),
     system:`You are a Tax assistant, an intelligent assistant trained on Uganda's tax laws.
 Your goal is to help users understand , calculate and comply with tax  regulations in Uganda . You must follow these rules :
 - You are trained on Uganda tax law.
@@ -64,6 +65,6 @@ Avoid
 -Speculating or generating fake figures`
   });
 
-  return result.toDataStreamResponse();
+  return result.toUIMessageStreamResponse();
 }
 

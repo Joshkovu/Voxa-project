@@ -113,7 +113,7 @@ const About = () => {
         {/* Values Section */}
         <div className="mb-20">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            {t("about.values")}
+            {t("our.Values")}
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {values.map((value, index) => {
@@ -148,10 +148,10 @@ const About = () => {
                 <p>{t("about.technologyDesc1")}</p>
                 <p>{t("about.technologyDesc2")}</p>
                 <div className="flex items-center space-x-2 pt-4">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-sm font-medium">
+                  {/* <div className="w-3 h-3 bg-green-500 rounded-full"></div> */}
+                  {/* <span className="text-sm font-medium">
                     {t("about.readyIntegration")}
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
@@ -206,7 +206,7 @@ const About = () => {
               {t("cta.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/chat">
+              {/* <Link to="/chat">
                 <Button
                   size="lg"
                   variant="secondary"
@@ -214,12 +214,12 @@ const About = () => {
                 >
                   {t("cta.askTaxes")}
                 </Button>
-              </Link>
+              </Link> */}
               <Link to="/signup">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-primary"
+                  className="border-white text-black hover:bg-white hover:text-primary"
                 >
                   {t("nav.signup")}
                 </Button>
