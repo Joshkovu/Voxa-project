@@ -5,6 +5,12 @@ import { useState, useEffect, useRef } from "react";
 // import { Label } from "@/components/ui/label";
 // import { MessageSquare, Send, X } from "lucide-react";
 // import { useLanguage } from "@/lib/translations";
+declare global {
+  interface Window {
+    botpressWebChat: any
+  }
+}
+
 import {
   Dialog,
   DialogContent,
@@ -13,6 +19,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+declare module '@botpress/webchat' {
+  export interface configuration {
+    botId?: string;
+    hostUrl?: string;
+    messagingUrl?: string;
+    themeColor?: string;
+    footer?: string;
+    allowFileUpload?: boolean;
+    // Add other optional props as needed
+  }
+  export function WebChat(props: {
+    clientId: string;
+    configuration?: configuration;
+  }): JSX.Element;
+}
 // import { toast } from "sonner";
 // import { cn } from "@/lib/utils";
 // import Chat from "@/pages/Chat"; // Ensure this import is correct
@@ -33,159 +54,69 @@ declare global {
     }
   }
 }
+
+import React from 'react';
+import { Webchat } from '@botpress/webchat';
+
+const clientId = "e33a2677-47f1-4a5b-98a6-828cfce7e2de";
+
 const FloatingFeedback = () => {
   const messengerRef = useRef<HTMLDivElement>(null);
-  // useEffect(() => {
-  //     const link = document.createElement('link');
-  //     link.rel = 'stylesheet';
-  //     link.href = 'https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css';
-  //     document.head.appendChild(link);
-  
-  //     const script = document.createElement('script');
-  //     script.src = 'https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js';
-  //     script.async = true;
-  //     document.body.appendChild(script);
-  // }, []);
-  // useEffect(() => {
-  //   const script = document.createElement('script');
-  //   script.src = 'https://www.gstatic.com/dialogflow-console/v1/df-messenger-bundle.js'; // Use the latest version
-  //   script.async = true;
-  //   script.onload = () => {
-  //     if (messengerRef.current) {
-  //       // Ensure the component is initialized after script load
-  //       const messenger = messengerRef.current.querySelector('df-messenger');
-  //       if (messenger) {
-  //         // Optional: Add a small delay to ensure initialization
-  //         setTimeout(() => {
-  //           // Log to debug if the method exists
-  //           console.log('Messenger initialized:', messenger);
-  //         }, 1000);
-  //       }
-  //     }
-  //   };
-  //   document.body.appendChild(script);
+  const [isWebchatOpen, setIsWebchatOpen] = useState(false);
+const originalWarn = console.warn;
+useEffect(() => {
+  console.warn = (...args) => {
+    if (typeof args[0] === 'string' && args[0].includes('Support for defaultProps')) {
+      return; // Suppress only the defaultProps warning
+    }
+    originalWarn(...args);
+  };
+  return () => {
+    console.warn = originalWarn; // Restore original on unmount
+  };
+}, []);
+  const toggleWebchat = () => {
+    setIsWebchatOpen((prevState) => !prevState);
+  };
 
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  // }, []);
-  const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
-  // const [feedbackForm, setFeedbackForm] = useState({
-  //   name: "",
-  //   email: "",
-  //   message: "",
-  // });
-  // const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
-  // const { t, currentLanguage } = useLanguage();
+  useEffect(() => {
+    const script1 = document.createElement("script");
+    script1.src = "https://cdn.botpress.cloud/webchat/v3.2/inject.js";
+    script1.defer = true;
 
-  // const isRTL = currentLanguage === "ar";
+    const script2 = document.createElement("script");
+    script2.src = "https://files.bpcontent.cloud/2025/07/16/06/20250716061755-ZJ8ECWPW.js";
+    script2.defer = true;
 
-  // const handleFeedbackSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (!feedbackForm.message.trim()) {
-  //     toast.error("Please enter your feedback message");
-  //     return;
-  //   }
+    document.body.appendChild(script1);
+    document.body.appendChild(script2);
 
-  //   setIsSubmittingFeedback(true);
-
-  //   try {
-  //     // Simulate API call - replace with actual endpoint
-  //     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-  //     // Here you would normally send to your backend
-  //     // Create feedback object
-  //     const newFeedback = {
-  //       id: Date.now().toString(),
-  //       name: feedbackForm.name || "Anonymous User",
-  //       message: feedbackForm.message,
-  //       timestamp: new Date(),
-  //       language: currentLanguage,
-  //       page: window.location.pathname,
-  //     };
-
-  //     console.log("Feedback submitted:", newFeedback);
-
-  //     // Save to localStorage and dispatch event
-  //     const savedFeedback = localStorage.getItem("voxa-user-feedback");
-  //     let feedbacks = [];
-  //     if (savedFeedback) {
-  //       try {
-  //         feedbacks = JSON.parse(savedFeedback);
-  //       } catch (error) {
-  //         console.error("Error parsing saved feedback:", error);
-  //       }
-  //     }
-
-  //     const updatedFeedbacks = [newFeedback, ...feedbacks.slice(0, 4)];
-  //     localStorage.setItem(
-  //       "voxa-user-feedback",
-  //       JSON.stringify(updatedFeedbacks),
-  //     );
-
-  //     // Dispatch event so Home page can update immediately
-  //     window.dispatchEvent(
-  //       new CustomEvent("voxa-feedback-submitted", { detail: newFeedback }),
-  //     );
-
-  //     toast.success(t("feedback.success"));
-  //     setFeedbackForm({ name: "", email: "", message: "" });
-  //     setShowFeedbackDialog(false);
-  //   } catch (error) {
-  //     toast.error(t("feedback.error"));
-  //   } finally {
-  //     setIsSubmittingFeedback(false);
-  //   }
-  // };
-
-  // const handleFeedbackInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setFeedbackForm((prev) => ({ ...prev, [name]: value }));
-  // };
+    return () => {
+      document.body.removeChild(script1);
+      document.body.removeChild(script2);
+    };
+  }, []);
 
   return (
     <>
-      <div className="mr-19">
-      {/* Floating Feedback Button */}
-      <Dialog open={showFeedbackDialog} onOpenChange={setShowFeedbackDialog}>
+      <div style={{ width: '100vw', height: '100vh' }}>
         
-        {/* <df-messenger
-        location="eu"
-        project-id="tax-assistant-469117"
-        agent-id="07d2fbc5-b94d-44e6-a9b7-a895b89b375c"
-        language-code="en"
-        max-query-length="-1"
-      >
-        <df-messenger-chat-bubble chat-title="tax-chatbot"></df-messenger-chat-bubble>
-      </df-messenger>
-
-      <style>
- {`
-          df-messenger {
-         z-index: 999;
-    position: fixed;
-            bottom: 16px;
-            right: 16px;
-            --df-messenger-font-color: #000;
-            --df-messenger-font-family: Google Sans;
-            --df-messenger-chat-background: #f3f6fc;
-            --df-messenger-message-user-background: #d3e3fd;
-            --df-messenger-message-bot-background: #fff;
-          }
-        `}
-      </style> */}
-        <iframe
-  src="/bot.html"
-  width="350"
-  height="830"
-  style={{ border: 'none', position: 'fixed', bottom: '16px', right: '16px', zIndex: 999 }}
-></iframe>
-
-        
-        </Dialog>
+      
+        <div
+          style={{
+            display: isWebchatOpen ? 'block' : 'none',
+            position: 'fixed',
+            bottom: '70px',
+            right: '16px',
+            zIndex: 998,
+          }}
+        >
+          <Webchat
+            clientId={clientId}
+            
+          />
         </div>
+      </div>
     </>
   );
 };
